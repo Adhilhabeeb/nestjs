@@ -4,7 +4,7 @@ import { UsersService } from './users.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from './users.scheme';
 import { ProductsModule } from 'src/products/products.module';
-import { CheckUserIdMiddleware } from 'src/check-user-id/check-user-id.middleware';
+
 
 @Module({
   imports: [ProductsModule,
@@ -13,10 +13,4 @@ import { CheckUserIdMiddleware } from 'src/check-user-id/check-user-id.middlewar
   controllers: [UsersController],
   providers: [UsersService]
 })
-export class UsersModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(CheckUserIdMiddleware)
-      .forRoutes('users/:id/products'); // apply only to this route
-  }
-}
+export class UsersModule { }

@@ -1,15 +1,14 @@
-import { Controller, Get, Param, Req, Request } from '@nestjs/common';
-import { User } from 'src/users/users.service';
-interface RequestWithUser extends Request {
-    user: User;
-}
+import { Controller, Get, Param } from '@nestjs/common';
 
-@Controller('users/:id/products')
+@Controller('users/products')
 export class ProductsController {
 
     @Get()
-    getUserProducts(@Param('id') id: string, @Req() req: RequestWithUser,) {
-        const user = req.user;
-        return `Products of user ${user.name}`;
+    getHello(): string {
+        return 'Products of user JKH';
+    }
+    @Get(':id')
+    getfromid(@Param('id') id: string) {
+        return 'Products of id:' + id
     }
 }
